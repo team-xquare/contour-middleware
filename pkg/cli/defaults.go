@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/team-xquare/auth/pkg/auth"
+	"github.com/team-xquare/contour-middleware/pkg/auth"
 
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"

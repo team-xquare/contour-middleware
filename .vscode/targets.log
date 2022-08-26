@@ -1,0 +1,328 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-pc-mingw32
+ 
+
+# ����ũ ����Ÿ���̽�, Fri Jun 17 09:03:40 2022
+�� ǥ��
+# ����
+
+# �ڵ�
+<D = $(patsubst %/,%,$(dir $<))
+# �ڵ�
+?F = $(notdir $?)
+# ����ũ����
+MAKEFLAGS = Rrqp
+# ȯ��
+VSCODE_LOG_NATIVE = false
+# �ڵ�
+?D = $(patsubst %/,%,$(dir $?))
+# ȯ��
+PLATFORMIO_IDE = 2.4.3
+# �ڵ�
+@D = $(patsubst %/,%,$(dir $@))
+# ȯ��
+HOMEDRIVE = C:
+# �ڵ�
+@F = $(notdir $@)
+# �ڵ�
+^D = $(patsubst %/,%,$(dir $^))
+# ����ũ����
+CURDIR := c:/Users/hwc91/���� ȭ��/Repository/Xquare/authorization
+# �⺻��
+SHELL := sh.exe
+# ȯ��
+WINDIR = C:\WINDOWS
+# ȯ��
+VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"26f3b44ea4f1e942cca002e9545643cc.ko","_translationsConfigFile":"C:\\Users\\hwc91\\AppData\\Roaming\\Code\\clp\\26f3b44ea4f1e942cca002e9545643cc.ko\\tcf.json","_cacheRoot":"C:\\Users\\hwc91\\AppData\\Roaming\\Code\\clp\\26f3b44ea4f1e942cca002e9545643cc.ko","_resolvedLanguagePackCoreLocation":"C:\\Users\\hwc91\\AppData\\Roaming\\Code\\clp\\26f3b44ea4f1e942cca002e9545643cc.ko\\4af164ea3a06f701fe3e89a2bcbb421d2026b68f","_corruptedFile":"C:\\Users\\hwc91\\AppData\\Roaming\\Code\\clp\\26f3b44ea4f1e942cca002e9545643cc.ko\\corrupted.info","_languagePackSupport":true}
+# ȯ��
+ONEDRIVE = C:\Users\hwc91\OneDrive
+# ȯ��
+QSYS_ROOTDIR = C:\intelFPGA_lite\21.1\quartus\sopc_builder\bin
+# ȯ��
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# ����ũ����
+MAKEFILE_LIST := 
+# ȯ��
+TMP = C:\Users\hwc91\AppData\Local\Temp
+# ȯ��
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# ȯ��
+VSCODE_VERBOSE_LOGGING = true
+# ȯ��
+ETHEREUM_SOCKET = \\.\pipe\geth.ipc
+# ȯ��
+PROGRAMW6432 = C:\Program Files
+# ȯ��
+PROGRAMDATA = C:\ProgramData
+# ȯ��
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-20ad6b53-9aa3-4be9-b4be-3643b87da9dc-sock
+# ȯ��
+VSCODE_CWD = C:\Users\hwc91\AppData\Local\Programs\Microsoft VS Code
+# ȯ��
+GOPROXY = https://proxy.golang.org,direct
+# ȯ��
+NO_PROXY = 127.0.0.1
+# ȯ��
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# ȯ��
+CHOCOLATEYLASTPATHUPDATE = 132911747451639463
+# ȯ��
+PROCESSOR_ARCHITECTURE = x86
+# ȯ��
+USERPROFILE = C:\Users\hwc91
+# ȯ��
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# ȯ��
+ALLUSERSPROFILE = C:\ProgramData
+# ȯ��
+GOPATH = C:\Users\hwc91\go
+# ȯ��
+SOPC_KIT_NIOS2 = C:\intelFPGA_lite\21.1\nios2eds
+# ȯ��
+VSCODE_LOG_STACK = false
+# ȯ��
+NUMBER_OF_PROCESSORS = 8
+# ȯ��
+ELECTRON_RUN_AS_NODE = 1
+# ȯ��
+PYENV_ROOT = C:\Users\hwc91\.pyenv\pyenv-win\
+# �⺻��
+.FEATURES := target-specific order-only second-expansion else-if archives
+# �ڵ�
+%F = $(notdir $%)
+# ȯ��
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12752_IXUICGLDJLQAWOZE
+# ȯ��
+VSCODE_PIPE_LOGGING = true
+# ȯ��
+COMPUTERNAME = SKYHELPER
+# ȯ��
+PROGRAMFILES = C:\Program Files (x86)
+# ȯ��
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# ȯ��
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# ȯ��
+USERNAME = hwc91
+# ȯ��
+PUBLIC = C:\Users\Public
+# ȯ��
+GOMODCACHE = C:\Users\hwc91\go\pkg\mod
+# ȯ��
+VSCODE_CODE_CACHE_PATH = C:\Users\hwc91\AppData\Roaming\Code\CachedData\4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+# ȯ��
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# ȯ��
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# ȯ��
+LOGONSERVER = \\SKYHELPER
+# ȯ��
+ONEDRIVECONSUMER = C:\Users\hwc91\OneDrive
+# ȯ��
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# ȯ��
+USERDOMAIN = SKYHELPER
+# ȯ��
+PLATFORMIO_PATH = C:\Users\hwc91\.platformio\penv\Scripts;C:\Users\hwc91\.platformio\penv;C:\Users\hwc91\.platformio\python3;C:\Program Files (x86)\NAT Service;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Go\bin;D:\Program Files\Geth;C:\Program Files\dotnet\;C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\hwc91\AppData\Local\Microsoft\WindowsApps;C:\Users\hwc91\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\hwc91\AppData\Local\GitHubDesktop\bin;C:\Users\hwc91\AppData\Roaming\npm;C:\Users\hwc91\go\bin;C:\Program Files (x86)\GnuWin32\bin;C:\intelFPGA\18.1\modelsim_ase\win32aloem;C:\Users\hwc91\.bin\;C:\Users\hwc91\.dotnet\tools;C:\Users\hwc91\.pyenv\pyenv-win\bin;C:\Users\hwc91\.pyenv\pyenv-win\shims;C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0;C:\msys64\mingw64\bin;;C:\Program Files (x86)\NAT Service;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Go\bin;D:\Program Files\Geth;C:\Program Files\dotnet\;C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\hwc91\AppData\Local\Microsoft\WindowsApps;C:\Users\hwc91\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\hwc91\AppData\Local\GitHubDesktop\bin;C:\Users\hwc91\AppData\Roaming\npm;C:\Users\hwc91\go\bin;C:\Program Files (x86)\GnuWin32\bin;C:\intelFPGA\18.1\modelsim_ase\win32aloem;C:\Users\hwc91\.bin\;C:\Users\hwc91\.dotnet\tools;C:\Users\hwc91\.pyenv\pyenv-win\bin;C:\Users\hwc91\.pyenv\pyenv-win\shims;C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0;C:\msys64\mingw64\bin;
+# �⺻��
+MAKE = $(MAKE_COMMAND)
+# �⺻��
+MAKECMDGOALS := all
+# ȯ��
+PATH = C:\Program Files (x86)\NAT Service;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Go\bin;D:\Program Files\Geth;C:\Program Files\dotnet\;C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\hwc91\AppData\Local\Microsoft\WindowsApps;C:\Users\hwc91\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\hwc91\AppData\Local\GitHubDesktop\bin;C:\Users\hwc91\AppData\Roaming\npm;C:\Users\hwc91\go\bin;C:\Program Files (x86)\GnuWin32\bin;C:\intelFPGA\18.1\modelsim_ase\win32aloem;C:\Users\hwc91\.bin\;C:\Users\hwc91\.dotnet\tools;C:\Users\hwc91\.pyenv\pyenv-win\bin;C:\Users\hwc91\.pyenv\pyenv-win\shims;C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0;C:\msys64\mingw64\bin;
+# �⺻��
+MAKE_VERSION := 3.81
+# ����ũ����
+.DEFAULT_GOAL := 
+# ȯ��
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# �ڵ�
+%D = $(patsubst %/,%,$(dir $%))
+# ȯ��
+LOCALAPPDATA = C:\Users\hwc91\AppData\Local
+# ȯ��
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# �⺻��
+MAKE_COMMAND := make.exe
+# ȯ��
+PROCESSOR_ARCHITEW6432 = AMD64
+# �⺻��
+.VARIABLES := 
+# �ڵ�
+*F = $(notdir $*)
+# ȯ��
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
+# ȯ��
+OS = Windows_NT
+# ȯ��
+VSCODE_IPC_HOOK = \\.\pipe\5cf3d2521bd5a9fbd9e8e6819503837d-1.68.0-main-sock
+# ȯ��
+HOMEPATH = \Users\hwc91
+# ȯ��
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# ȯ��
+PROMPT = $P$G
+# ȯ��
+MFLAGS = -Rrqp
+# �ڵ�
+*D = $(patsubst %/,%,$(dir $*))
+# ȯ��
+SYSTEMROOT = C:\WINDOWS
+# �ڵ�
++D = $(patsubst %/,%,$(dir $+))
+# ȯ��
+PYENV = C:\Users\hwc91\.pyenv\pyenv-win\
+# �ڵ�
++F = $(notdir $+)
+# ȯ��
+APPDATA = C:\Users\hwc91\AppData\Roaming
+# ȯ��
+TEMP = C:\Users\hwc91\AppData\Local\Temp
+# ȯ��
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# �⺻��
+MAKEFILES := 
+# ȯ��
+QUARTUS_ROOTDIR = C:\intelFPGA_lite\21.1\quartus
+# �ڵ�
+<F = $(notdir $<)
+# ȯ��
+PLATFORMIO_CALLER = vscode
+# ȯ��
+LC_ALL = C
+# ȯ��
+PYENV_HOME = C:\Users\hwc91\.pyenv\pyenv-win\
+# �ڵ�
+^F = $(notdir $^)
+# �⺻��
+SUFFIXES := 
+# ȯ��
+SYSTEMDRIVE = C:
+# ȯ��
+SESSIONNAME = Console
+# ȯ��
+PROCESSOR_REVISION = 8e0a
+# ȯ��
+MAKELEVEL := 0
+# ȯ��
+LANG = C
+# ȯ��
+PROCESSOR_LEVEL = 6
+# ȯ��
+VSCODE_PID = 12752
+# ȯ��
+USERDOMAIN_ROAMINGPROFILE = SKYHELPER
+# variable set hash-table stats:
+# Load=103/1024=10%, Rehash=0, Collisions=13/120=11%
+
+# Pattern-specific Variable Values
+
+# ������ ���� ���� ������ �����ϴ�.
+
+# ���丮
+
+# : stat�� �� �� �������ϴ�.
+# C:\Program Files\Docker\Docker\resources\bin (Ű C:/Program Files/Docker/Docker/resources/bin, ����ð� 1653060503): 13 ����, 0�� �Ұ���.
+# C:\Program Files\Go\bin (Ű C:/Program Files/Go/bin, ����ð� 1646887576): 7 ����, 0�� �Ұ���.
+# C:\Program Files\Cloudflare\Cloudflare WARP\ (Ű C:/Program Files/Cloudflare/Cloudflare WARP/, ����ð� 1654676954): 11 ����, 0�� �Ұ���.
+# C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (Ű C:/WINDOWS/System32/WindowsPowerShell/v1.0/, ����ð� 1645691329): 32 ����, 0�� �Ұ���.
+# C:\WINDOWS\System32\Wbem (Ű C:/WINDOWS/System32/Wbem, ����ð� 1653059883): 155 ����, 0�� �Ұ���.
+# . (Ű c:/Users/hwc91/���� ȭ��/Repository/Xquare/authorization, ����ð� 1655424214): 12 ����, 0�� �Ұ���.
+# C:\Users\hwc91\AppData\Local\Programs\Microsoft VS Code\bin (Ű C:/Users/hwc91/AppData/Local/Programs/Microsoft VS Code/bin, ����ð� 1654822934): 4 ����, 0�� �Ұ���.
+# C:\Users\hwc91\AppData\Roaming\npm (Ű C:/Users/hwc91/AppData/Roaming/npm, ����ð� 1652279045): 39 ����, 0�� �Ұ���.
+# C:\Users\hwc91\.dotnet\tools: stat�� �� �� �������ϴ�.
+# C:\ProgramData\chocolatey\bin (Ű C:/ProgramData/chocolatey/bin, ����ð� 1645752686): 13 ����, 0�� �Ұ���.
+# C:\Program Files\nodejs\ (Ű C:/Program Files/nodejs/, ����ð� 1646702516): 13 ����, 0�� �Ұ���.
+# C:\WINDOWS\System32\OpenSSH\: stat�� �� �� �������ϴ�.
+# C:\Program Files (x86)\NAT Service (Ű C:/Program Files (x86)/NAT Service, ����ð� 1645839789): 10 ����, 0�� �Ұ���.
+# C:\Users\hwc91\AppData\Local\GitHubDesktop\bin (Ű C:/Users/hwc91/AppData/Local/GitHubDesktop/bin, ����ð� 1645694282): 4 ����, 0�� �Ұ���.
+# C:\WINDOWS (Ű C:/WINDOWS, ����ð� 1654322806): 108 ����, 0�� �Ұ���.
+# C:\Users\hwc91\AppData\Local\Microsoft\WindowsApps (Ű C:/Users/hwc91/AppData/Local/Microsoft/WindowsApps, ����ð� 1654956753): 28 ����, 0�� �Ұ���.
+# C:\Users\hwc91\.pyenv\pyenv-win\versions\3.8.0 (Ű C:/Users/hwc91/.pyenv/pyenv-win/versions/3.8.0, ����ð� 1651021396): 65 ����, 0�� �Ұ���.
+# C:\Program Files\dotnet\ (Ű C:/Program Files/dotnet/, ����ð� 1646957907): 12 ����, 0�� �Ұ���.
+# C:\Users\hwc91\go\bin (Ű C:/Users/hwc91/go/bin, ����ð� 1655304503): 22 ����, 0�� �Ұ���.
+# C:\ProgramData\DockerDesktop\version-bin: stat�� �� �� �������ϴ�.
+# D:\Program Files\Geth (Ű D:/Program Files/Geth, ����ð� 1646956277): 10 ����, 0�� �Ұ���.
+# C:\msys64\mingw64\bin (Ű C:/msys64/mingw64/bin, ����ð� 1655078479): 179 ����, 0�� �Ұ���.
+# C:\Program Files\Git\cmd (Ű C:/Program Files/Git/cmd, ����ð� 1645752997): 8 ����, 0�� �Ұ���.
+# C:\WINDOWS\system32 (Ű C:/WINDOWS/system32, ����ð� 1655364497): 2989 ����, 0�� �Ұ���.
+# C:\Users\hwc91\.pyenv\pyenv-win\shims (Ű C:/Users/hwc91/.pyenv/pyenv-win/shims, ����ð� 1646701462): 28 ����, 0�� �Ұ���.
+# C:\intelFPGA\18.1\modelsim_ase\win32aloem (Ű C:/intelFPGA/18.1/modelsim_ase/win32aloem, ����ð� 1648446902): 111 ����, 0�� �Ұ���.
+# C:\Users\hwc91\.bin\ (Ű C:/Users/hwc91/.bin/, ����ð� 1650549344): 3 ����, 0�� �Ұ���.
+# C:\Users\hwc91\.pyenv\pyenv-win\bin (Ű C:/Users/hwc91/.pyenv/pyenv-win/bin, ����ð� 1646701143): 5 ����, 0�� �Ұ���.
+# C:\Program Files (x86)\GnuWin32\bin (Ű C:/Program Files (x86)/GnuWin32/bin, ����ð� 1647515439): 5 ����, 0�� �Ұ���.
+
+# 3886 ����, 0�� impossibilities in 30 directories.
+
+# Implicit Rules
+
+# ������ ��Ģ ����.
+
+# ����
+
+# Ÿ���� �ƴ�:
+all:
+#  ������ Ÿ��.
+#  ������ ��Ģ Ž���� �Ϸ�Ǿ����ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Ÿ���� �ƴ�:
+.DEFAULT:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+
+# Ÿ���� �ƴ�:
+makefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  ������ ��Ģ Ž���� �Ϸ�Ǿ����ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵǾ����ϴ�.
+#  ���ſ� ������.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Ÿ���� �ƴ�:
+.SUFFIXES:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+
+# Ÿ���� �ƴ�:
+GNUmakefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  ������ ��Ģ Ž���� �Ϸ�Ǿ����ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵǾ����ϴ�.
+#  ���ſ� ������.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# files hash-table stats:
+# Load=5/1024=0%, Rehash=0, Collisions=0/16=0%
+# VPATH Ž�� ���
+
+# `vpath' Ž�� ��ΰ� ����.
+
+# �Ϲ����� (`VPATH' ����) Ž�� ��ΰ� ����.
+
+# # of strings in strcache: 0
+# # of str 
+make.exe: *** Ÿ�� `all'�� ���� ��Ģ�� ����.  ����.
+
+cache buffers: 0
+# strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
+# strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
+
+# ����ũ ����Ÿ ���̽� ��ħ, Fri Jun 17 09:03:40 2022
+����
+ 

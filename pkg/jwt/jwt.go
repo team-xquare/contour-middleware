@@ -1,29 +1,26 @@
 package jwt
 
 import (
-	"strings"
+	"os"
 
 	"github.com/dgrijalva/jwt-go"
 )
 
-var jwtSecret = []byte("qwertyuiopoiuytrewq")
+var jwtSecret = []byte(os.Getenv("JWT_SECRET"))
 
 type ValidationError = jwt.ValidationError
-
-func GetJWTToken(token string) string {
-	bearToken := token
-	strArr := strings.Split(bearToken, " ")
-	if len(strArr) != 2 {
-		return ""
-	}
-
-	return strArr[1]
-}
 
 type JWTClaims struct {
 	Role        string   `json:"role"`
 	Authorities []string `json:"authorities"`
 	jwt.StandardClaims
+}
+
+func (c JWTClaims) ToJWTToken() string {
+	at := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
+	token, _ := at.SignedString([]byte(jwtSecret))
+
+	return token
 }
 
 func ParseJWTToken(jwtToken string) (*JWTClaims, error) {

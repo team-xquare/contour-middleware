@@ -32,14 +32,17 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 		request.ID,
 	)
 
-	availableHeaders := c.findNotAvailableHeader(request)
-	if len(availableHeaders) != 0 {
-		err := errors.NewNotAvailableHeaderError(availableHeaders)
-		return c.responseUnauthorizedError(err), nil
+	invalidHeaders := c.findInvalidHeaders(request)
+	if len(invalidHeaders) != 0 {
+		err := errors.NewInvalidHeaderError(invalidHeaders)
+		return c.responseUnauthorizedError(err), err
 	}
 
 	tokenType, tokenString := c.getTokenInfo(request)
 	if tokenType == "basic" || tokenType == "Basic" {
+		return c.responseOKWithoutHeader(), nil
+	}
+	if len(tokenString) == 0 {
 		return c.responseOKWithoutHeader(), nil
 	}
 
@@ -53,7 +56,7 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 	return c.responseOKWithHeader(header), nil
 }
 
-func (c *checkService) findNotAvailableHeader(request *Request) []string {
+func (c *checkService) findInvalidHeaders(request *Request) []string {
 	blackList := []string{"Request-User-Id", "Request-User-Role", "Request-User-Authorities"}
 	result := []string{}
 	for _, key := range blackList {
@@ -67,6 +70,9 @@ func (c *checkService) findNotAvailableHeader(request *Request) []string {
 
 func (c *checkService) getTokenInfo(request *Request) (string, string) {
 	token := request.Request.Header.Get("Authorization")
+	if len(token) == 0 {
+		return "", ""
+	}
 	return strings.Split(token, " ")[0], strings.Split(token, " ")[1]
 }
 

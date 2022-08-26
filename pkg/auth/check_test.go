@@ -10,7 +10,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/team-xquare/contour-middleware/pkg/errors"
+	"github.com/team-xquare/contour-middleware/pkg/jwt"
 )
 
 func prepareCheckService() CheckService {
@@ -50,16 +51,15 @@ func TestCheckWithoutJWTToken(t *testing.T) {
 	}, res)
 }
 
-func TestCheckWithJWTToken(t *testing.T) {
+func TestCheckWithBearerToken(t *testing.T) {
 	ctx := context.Background()
 
-	atClaims := jwt.MapClaims{}
-	atClaims["sub"] = "1"
-	atClaims["authorities"] = []string{"auth-1", "auth-2", "auth-3"}
-	atClaims["role"] = "STU"
-	atClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
-	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
-	token, _ := at.SignedString([]byte(jwtSecret))
+	claims := jwt.JWTClaims{}
+	claims.Subject = "1"
+	claims.Authorities = []string{"auth-1", "auth-2", "auth-3"}
+	claims.Role = "STU"
+	claims.ExpiresAt = time.Now().Add(time.Minute * 15).Unix()
+	token := claims.ToJWTToken()
 
 	request := &Request{
 		ID:      "100",
@@ -104,13 +104,7 @@ func TestCheckWithJWTToken(t *testing.T) {
 func TestCheckWithInvalidJWTToken(t *testing.T) {
 	ctx := context.Background()
 
-	atClaims := jwt.MapClaims{}
-	atClaims["sub"] = "1"
-	atClaims["authorities"] = []string{"auth-1", "auth-2", "auth-3"}
-	atClaims["role"] = "STU"
-	atClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
-	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
-	token, _ := at.SignedString([]byte(""))
+	token := "Invalid token"
 
 	request := &Request{
 		ID:      "100",
@@ -137,6 +131,70 @@ func TestCheckWithInvalidJWTToken(t *testing.T) {
 		Allow: false,
 		Response: http.Response{
 			StatusCode: http.StatusUnauthorized,
+		},
+	}, res)
+}
+
+func TestCheckWithInvalidHeaders(t *testing.T) {
+	ctx := context.Background()
+
+	request := &Request{
+		ID:      "100",
+		Context: map[string]string{"k1": "v1", "k2": "v2"},
+		Request: http.Request{
+			Header: http.Header{"User-Agent": {"Foo"}, "Request-User-Id": {"3"}},
+			Method: "GET",
+			Proto:  "HTTP/1.1",
+			URL: &url.URL{
+				Scheme:   "https",
+				Host:     "example.com",
+				Path:     "example",
+				RawQuery: "query",
+			},
+		},
+	}
+
+	check := prepareCheckService()
+
+	res, err := check.Check(ctx, request)
+	_, ok := err.(errors.InvalidHeaderError)
+	assert.True(t, ok)
+	assert.Equal(t, &Response{
+		Allow: false,
+		Response: http.Response{
+			StatusCode: http.StatusUnauthorized,
+		},
+	}, res)
+}
+
+func TestCheckWithBasicToken(t *testing.T) {
+	ctx := context.Background()
+
+	token := "basicToken"
+	request := &Request{
+		ID:      "100",
+		Context: map[string]string{"k1": "v1", "k2": "v2"},
+		Request: http.Request{
+			Header: http.Header{"User-Agent": {"Foo"}, "Authorization": {"Basic " + token}},
+			Method: "GET",
+			Proto:  "HTTP/1.1",
+			URL: &url.URL{
+				Scheme:   "https",
+				Host:     "example.com",
+				Path:     "example",
+				RawQuery: "query",
+			},
+		},
+	}
+
+	check := prepareCheckService()
+
+	res, err := check.Check(ctx, request)
+	assert.Equal(t, nil, err)
+	assert.Equal(t, &Response{
+		Allow: true,
+		Response: http.Response{
+			StatusCode: http.StatusOK,
 		},
 	}, res)
 }

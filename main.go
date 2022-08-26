@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/team-xquare/auth/pkg/cli"
+	"github.com/team-xquare/contour-middleware/pkg/cli"
 
 	"github.com/spf13/cobra"
 )

@@ -8,6 +8,8 @@ import (
 
 var jwtSecret = []byte(os.Getenv("JWT_SECRET"))
 
+type ValidationError = jwt.ValidationError
+
 type JWTClaims struct {
 	Role        string   `json:"role"`
 	Authorities []string `json:"authorities"`

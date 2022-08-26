@@ -1,4 +1,4 @@
-module github.com/team-xquare/auth
+module github.com/team-xquare/contour-middleware
 
 go 1.17
 

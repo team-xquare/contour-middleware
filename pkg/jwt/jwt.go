@@ -1,4 +1,4 @@
-package auth
+package jwt
 
 import (
 	"strings"
@@ -8,14 +8,16 @@ import (
 
 var jwtSecret = []byte("qwertyuiopoiuytrewq")
 
-func GetJWTToken(request *Request) string {
-	bearToken := request.Request.Header.Get("Authorization")
+type ValidationError = jwt.ValidationError
+
+func GetJWTToken(token string) string {
+	bearToken := token
 	strArr := strings.Split(bearToken, " ")
-	if len(strArr) == 2 {
-		return strArr[1]
+	if len(strArr) != 2 {
+		return ""
 	}
 
-	return ""
+	return strArr[1]
 }
 
 type JWTClaims struct {

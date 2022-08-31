@@ -19,7 +19,7 @@ jobs:
         go-version: 1.17
 
     - name: Test
-      run: go test -v ./...
+      run: go test ./... -covermode=atomic -coverprofile=coverage.out -race
       env: 
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
 

@@ -104,13 +104,13 @@ func TestCheckWithBearerToken(t *testing.T) {
 func TestCheckWithInvalidJWTToken(t *testing.T) {
 	ctx := context.Background()
 
-	token := "Invalid token"
+	token := "invalid.token"
 
 	request := &Request{
 		ID:      "100",
 		Context: map[string]string{"k1": "v1", "k2": "v2"},
 		Request: http.Request{
-			Header: http.Header{"User-Agent": {"Foo"}, "Authorization": {"Bearer " + token}},
+			Header: http.Header{"User-Agent": {"Foo"}, "Authorization": {"bearer " + token}},
 			Method: "GET",
 			Proto:  "HTTP/1.1",
 			URL: &url.URL{
@@ -157,8 +157,7 @@ func TestCheckWithInvalidHeaders(t *testing.T) {
 	check := prepareCheckService()
 
 	res, err := check.Check(ctx, request)
-	_, ok := err.(errors.InvalidHeaderError)
-	assert.True(t, ok)
+	assert.IsType(t, errors.NewInvalidHeaderError([]string{"Request-User-Id"}), err)
 	assert.Equal(t, &Response{
 		Allow: false,
 		Response: http.Response{

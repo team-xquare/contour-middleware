@@ -1,0 +1,55 @@
+name: Build for Prod
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+env:
+  SERVICE_NAME: contour-middleware
+  SERVICE_TYPE: be
+
+jobs:
+  build:
+    steps:
+      
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.17
+
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+    - name: Login to ECR
+      id: ecr
+      uses: elgohr/ecr-login-action@master
+      with:
+        access_key: ${{ secrets.AWS_ACCESS_KEY }}
+        secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+        region: ${{ secrets.AWS_REGION }}
+
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: ${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}
+        username: ${{ steps.ecr.outputs.username }}
+        password: ${{ steps.ecr.outputs.password }}
+        registry: ${{ steps.ecr.outputs.registry }}
+        tags: ${{ github.sha }}
+        buildargs: |
+          JWT_SECRET=${{secrets.JWT_SECRET}}
+          
+    - name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.GITOPS_DEPLOY_STAGE_TOKEN }}
+        repository: team-xquare/xquare-gitops-repo-staging
+        event-type: update_image
+        client-payload: '{"ref": "${{ github.ref }}", 
+                          "version": "${{ github.sha }}",
+                          "service_name": "${{env.SERVICE_NAME}}",
+                          "service_type": "${{env.SERVICE_TYPE}}"}'

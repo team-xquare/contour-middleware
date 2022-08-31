@@ -34,11 +34,14 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 
 	availableHeaders := c.findNotAvailableHeader(request)
 	if len(availableHeaders) != 0 {
-		err := errors.NewNotAvailableHeaderError(availableHeaders)
-		return c.responseUnauthorizedError(err), nil
+		err := errors.NewInvalidHeaderError(availableHeaders)
+		return c.responseUnauthorizedError(err), err
 	}
 
 	tokenType, tokenString := c.getTokenInfo(request)
+	if len(tokenType) == 0 && len(tokenString) == 0 {
+		return c.responseOKWithoutHeader(), nil
+	}
 	if tokenType == "basic" || tokenType == "Basic" {
 		return c.responseOKWithoutHeader(), nil
 	}
@@ -67,7 +70,11 @@ func (c *checkService) findNotAvailableHeader(request *Request) []string {
 
 func (c *checkService) getTokenInfo(request *Request) (string, string) {
 	token := request.Request.Header.Get("Authorization")
-	return strings.Split(token, " ")[0], strings.Split(token, " ")[1]
+	splittedToken := strings.Split(token, " ")
+	if len(splittedToken) != 2 {
+		return "", ""
+	}
+	return splittedToken[0], splittedToken[1]
 }
 
 func (c *checkService) createHeaderFromJWTToken(jwtToken string) (http.Header, error) {

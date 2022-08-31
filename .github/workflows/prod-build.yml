@@ -39,7 +39,7 @@ jobs:
         username: ${{ steps.ecr.outputs.username }}
         password: ${{ steps.ecr.outputs.password }}
         registry: ${{ steps.ecr.outputs.registry }}
-        tags: ${{ github.sha }}
+        tags: ${{ steps.get_version.outputs.VERSION }}
         buildargs: |
           JWT_SECRET=${{secrets.JWT_SECRET}}
           

@@ -18,7 +18,7 @@ type JWTClaims struct {
 
 func (c JWTClaims) ToJWTToken() string {
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
-	token, _ := at.SignedString([]byte(jwtSecret))
+	token, _ := at.SignedString(jwtSecret)
 
 	return token
 }

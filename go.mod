@@ -13,6 +13,8 @@ require (
 	google.golang.org/grpc v1.47.0
 )
 
+require github.com/getsentry/sentry-go v0.13.0 // indirect
+
 require (
 	github.com/cncf/xds/go v0.0.0-20211011173535-cb28da3451f1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect

@@ -24,8 +24,6 @@ FROM alpine
 
 COPY --from=builder /dist/auth .
 
-RUN apk update && apk add --no-cache shadow && chsh -s /bin/bashx
-
 ARG JWT_SECRET
 ARG SENTRY_DS
 

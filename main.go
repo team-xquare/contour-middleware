@@ -1,16 +1,24 @@
 package main
 
 import (
-	"errors"
-	"fmt"
+	"log"
 	"os"
 
-	"github.com/team-xquare/contour-middleware/pkg/cli"
-
+	"github.com/getsentry/sentry-go"
 	"github.com/spf13/cobra"
+	"github.com/team-xquare/contour-middleware/pkg/cli"
 )
 
 func main() {
+	err := sentry.Init(sentry.ClientOptions{
+		Dsn:              os.Getenv("SENTRY_DSN"),
+		TracesSampleRate: 1.0,
+	})
+	if err != nil {
+		log.Fatalf("error: %s\n", err)
+		os.Exit(int(cli.EX_FAIL))
+	}
+
 	root := cli.Defaults(&cobra.Command{
 		Use:   "auth",
 		Short: "Authentication server for the Envoy proxy",
@@ -19,15 +27,7 @@ func main() {
 	root.AddCommand(cli.Defaults(cli.NewAuthServerCommand()))
 
 	if err := root.Execute(); err != nil {
-		if msg := err.Error(); msg != "" {
-			fmt.Fprintf(os.Stderr, "error: %s\n", msg)
-		}
-
-		var exit *cli.ExitError
-		if errors.As(err, &exit) {
-			os.Exit(int(exit.Code))
-		}
-
+		log.Fatalf("error: %s\n", err)
 		os.Exit(int(cli.EX_FAIL))
 	}
 }

@@ -24,8 +24,8 @@ FROM scratch
 
 COPY --from=builder /dist/auth .
 
-ARG JWT_SECRETS
+ARG JWT_SECRET
 
-ENV JWT_SECRETS ${JWT_SECRETS}
+ENV JWT_SECRET ${JWT_SECRET}
 
 ENTRYPOINT [ "./auth", "run" ]

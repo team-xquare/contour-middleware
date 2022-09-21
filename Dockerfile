@@ -20,16 +20,12 @@ WORKDIR /dist
 RUN cp /build/auth .
 
 
-FROM alpine
+FROM scratch
 
 COPY --from=builder /dist/auth .
 
-RUN apk update && apk add --no-cache shadow && chsh -s /bin/bashx
-
 ARG JWT_SECRET
-ARG SENTRY_DS
 
 ENV JWT_SECRET ${JWT_SECRET}
-ENV SENTRY_DSN ${SENTRY_DSN}
 
 ENTRYPOINT [ "./auth", "run" ]

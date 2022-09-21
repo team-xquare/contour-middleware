@@ -2,12 +2,9 @@ package auth
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"strings"
-	"time"
 
-	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"github.com/team-xquare/contour-middleware/pkg/errors"
@@ -103,9 +100,7 @@ func (c *checkService) getRequestId() string {
 }
 
 func (c *checkService) responseInternelServerError(err error) *Response {
-	c.log.Error(err, 500)
-	defer sentry.Flush(2 * time.Second)
-	sentry.CaptureException(err)
+	c.log.Error(err)
 	return &Response{
 		Allow: false,
 		Response: http.Response{
@@ -115,9 +110,7 @@ func (c *checkService) responseInternelServerError(err error) *Response {
 }
 
 func (c *checkService) responseUnauthorizedError(err error) *Response {
-	c.log.Info(err, 401)
-	defer sentry.Flush(2 * time.Second)
-	sentry.CaptureException(err)
+	c.log.Info(err)
 	return &Response{
 		Allow: false,
 		Response: http.Response{
@@ -136,9 +129,6 @@ func (c *checkService) responseOKWithoutHeader() *Response {
 }
 
 func (c *checkService) responseOKWithHeader(header http.Header) *Response {
-	c.log.Info("response with header: ", header)
-	defer sentry.Flush(2 * time.Second)
-	sentry.CaptureMessage(fmt.Sprintf("response with header: %v", header))
 	response := &Response{
 		Allow: true,
 		Response: http.Response{

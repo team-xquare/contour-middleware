@@ -20,7 +20,7 @@ WORKDIR /dist
 RUN cp /build/auth .
 
 
-FROM alpine
+FROM scratch
 
 COPY --from=builder /dist/auth .
 

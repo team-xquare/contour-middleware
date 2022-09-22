@@ -1,9 +1,9 @@
-name: Build for Prod
+name: Build for Stage
 
 on:
   push:
-    tags:
-      - v*.*.*
+    branches:
+      - master
 
 env:
   SERVICE_NAME: contour-middleware
@@ -39,17 +39,17 @@ jobs:
         username: ${{ steps.ecr.outputs.username }}
         password: ${{ steps.ecr.outputs.password }}
         registry: ${{ steps.ecr.outputs.registry }}
-        tags: ${{ steps.get_version.outputs.VERSION }}
+        tags: ${{ github.sha }}
         buildargs: |
-          JWT_SECRET=${{secrets.JWT_SECRET_PROD}}
+          JWT_SECRET=${{secrets.JWT_SECRET_STAG}}
           
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.GITOPS_DEPLOY_PRODUCTION_TOKEN }}
-        repository: team-xquare/xquare-gitops-repo-production
+        token: ${{ secrets.GITOPS_DEPLOY_STAGE_TOKEN }}
+        repository: team-xquare/xquare-gitops-repo-staging
         event-type: update_image
         client-payload: '{"ref": "${{ github.ref }}", 
-                          "version": "${{ steps.get_version.outputs.VERSION }}",
+                          "version": "${{ github.sha }}",
                           "service_name": "${{env.SERVICE_NAME}}",
                           "service_type": "${{env.SERVICE_TYPE}}"}'

@@ -44,6 +44,8 @@ func (a *authV2) Check(ctx context.Context, check *CheckRequestV2) (*CheckRespon
 		return nil, err
 	}
 
+	response.Response.Header.Set("TETE", "ETETE")
+
 	return response.AsV2(), nil
 }
 

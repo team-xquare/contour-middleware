@@ -197,3 +197,53 @@ func TestCheckWithBasicToken(t *testing.T) {
 		},
 	}, res)
 }
+
+func TestCheckWithCookieToken(t *testing.T) {
+	ctx := context.Background()
+
+	claims := jwt.JWTClaims{}
+	claims.Subject = "1"
+	claims.Authorities = []string{"auth-1", "auth-2", "auth-3"}
+	claims.Role = "STU"
+	claims.ExpiresAt = time.Now().Add(time.Minute * 15).Unix()
+	token := claims.ToJWTToken()
+
+	request := &Request{
+		ID:      "100",
+		Context: map[string]string{"k1": "v1", "k2": "v2"},
+		Request: http.Request{
+			Header: http.Header{"User-Agent": {"Foo"}, "Cookie": {"accessToken="+ token}},
+			Method: "GET",
+			Proto:  "HTTP/1.1",
+			URL: &url.URL{
+				Scheme:   "https",
+				Host:     "example.com",
+				Path:     "example",
+				RawQuery: "query",
+			},
+		},
+	}
+
+	check := prepareCheckService()
+
+	res, err := check.Check(ctx, request)
+	assert.Equal(t, nil, err)
+
+	expect := &Response{
+		Allow: true,
+		Response: http.Response{
+			StatusCode: http.StatusOK,
+			Header: http.Header{
+				"Request-User-Id":          {"1"},
+				"Request-User-Role":        {"STU"},
+				"Request-User-Authorities": {"auth-1", "auth-2", "auth-3"},
+				"Request-Id":               {""},
+			},
+		},
+	}
+	assert.Equal(t, expect.Allow, res.Allow)
+	assert.Equal(t, expect.Response.Header.Get("Request-User-Id"), res.Response.Header.Get("Request-User-Id"))
+	assert.Equal(t, expect.Response.Header.Get("Request-User-Role"), res.Response.Header.Get("Request-User-Role"))
+	assert.Equal(t, expect.Response.Header.Get("Request-User-Authorities"), res.Response.Header.Get("Request-User-Authorities"))
+	assert.Equal(t, 36, len(res.Response.Header.Get("Request-Id")))
+}

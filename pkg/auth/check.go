@@ -35,19 +35,29 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 		request.ID,
 	)
 
-	availableHeaders := c.findNotAvailableHeader(request)
-	if len(availableHeaders) != 0 {
-		err := errors.NewInvalidHeaderError(availableHeaders)
-		return c.responseUnauthorizedError(err), err
+	var tokenString string
+	var tokenType string
+
+	if c.isAvailableCookie(request) {
+		c.log.Infof("COOKIE!!")
+		tokenString = c.getAccessTokenFromCookie(request)
+	} else {
+		availableHeaders := c.findNotAvailableHeader(request)
+		if len(availableHeaders) != 0 {
+			err := errors.NewInvalidHeaderError(availableHeaders)
+			return c.responseUnauthorizedError(err), err
+		}
+
+		tokenType, tokenString = c.getTokenInfo(request)
+		if len(tokenType) == 0 && len(tokenString) == 0 {
+			return c.responseOKWithoutHeader(), nil
+		}
+		if tokenType == "basic" || tokenType == "Basic" {
+			return c.responseOKWithoutHeader(), nil
+		}
 	}
 
-	tokenType, tokenString := c.getTokenInfo(request)
-	if len(tokenType) == 0 && len(tokenString) == 0 {
-		return c.responseOKWithoutHeader(), nil
-	}
-	if tokenType == "basic" || tokenType == "Basic" {
-		return c.responseOKWithoutHeader(), nil
-	}
+	
 
 	header, err := c.createHeaderFromJWTToken(tokenString)
 	if err != nil {
@@ -57,6 +67,23 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 		return c.responseInternelServerError(err), err
 	}
 	return c.responseOKWithHeader(header), nil
+}
+
+func (c *checkService) isAvailableCookie(request *Request) bool {
+	accessToken, err := request.Request.Cookie("accessToken")
+	if err != nil || accessToken == nil {
+		return false
+	}
+	return true
+}
+
+func (c *checkService) getAccessTokenFromCookie(request *Request) string {
+	accessToken, err := request.Request.Cookie("accessToken")
+	if err != nil || accessToken == nil {
+		return ""
+	} else {
+		return accessToken.Value
+	}
 }
 
 func (c *checkService) findNotAvailableHeader(request *Request) []string {

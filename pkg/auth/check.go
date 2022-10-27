@@ -39,7 +39,6 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 	var tokenType string
 
 	if c.isAvailableCookie(request) {
-		c.log.Infof("COOKIE!!")
 		tokenString = c.getAccessTokenFromCookie(request)
 	} else {
 		availableHeaders := c.findNotAvailableHeader(request)
@@ -179,6 +178,8 @@ func (c *checkService) responseOKWithHeader(header http.Header) *Response {
 			response.Response.Header.Add(key, values[i])
 		}
 	}
+	
+	response.Response.Header.Set("Access-Control-Allow-Credentials", "true")
 
 	return response
 }

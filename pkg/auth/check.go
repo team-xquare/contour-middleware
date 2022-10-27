@@ -121,6 +121,11 @@ func (c *checkService) createHeaderFromJWTToken(jwtToken string) (http.Header, e
 	}
 	headers.Add("Request-Id", c.getRequestId())
 
+	headers.Add("Access-Control-Allow-Origin", "localhost:3000")
+	headers.Add("Access-Control-Allow-Origin", "localhost:3001")
+	headers.Add("Access-Control-Allow-Origin", "service.xquare.app")
+	headers.Add("Access-Control-Allow-Credentials", "true")
+
 	return headers, nil
 }
 
@@ -178,11 +183,6 @@ func (c *checkService) responseOKWithHeader(header http.Header) *Response {
 			response.Response.Header.Add(key, values[i])
 		}
 	}
-	
-	response.Response.Header.Set("Access-Control-Allow-Origin", "localhost:3000")
-	response.Response.Header.Add("Access-Control-Allow-Origin", "localhost:3001")
-	response.Response.Header.Add("Access-Control-Allow-Origin", "service.xquare.app")
-	response.Response.Header.Set("Access-Control-Allow-Credentials", "true")
 
 	return response
 }

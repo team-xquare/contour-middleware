@@ -121,11 +121,6 @@ func (c *checkService) createHeaderFromJWTToken(jwtToken string) (http.Header, e
 	}
 	headers.Add("Request-Id", c.getRequestId())
 
-	headers.Add("Access-Control-Allow-Origin", "localhost:3000")
-	headers.Add("Access-Control-Allow-Origin", "localhost:3001")
-	headers.Add("Access-Control-Allow-Origin", "service.xquare.app")
-	headers.Add("Access-Control-Allow-Credentials", "true")
-
 	return headers, nil
 }
 

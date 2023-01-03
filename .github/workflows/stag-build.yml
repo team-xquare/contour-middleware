@@ -41,7 +41,7 @@ jobs:
         registry: ${{ steps.ecr.outputs.registry }}
         tags: ${{ github.sha }}
         buildargs: |
-          JWT_SECRET=${{secrets.JWT_SECRET_STAG}}
+          JWT_SECRET=${{ secrets.JWT_SECRET_STAG }}
           
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1

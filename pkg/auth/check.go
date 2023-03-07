@@ -56,8 +56,6 @@ func (c *checkService) Check(ctx context.Context, request *Request) (*Response, 
 		}
 	}
 
-	
-
 	header, err := c.createHeaderFromJWTToken(tokenString)
 	if err != nil {
 		if _, ok := err.(*jwt.ValidationError); ok {
@@ -116,9 +114,10 @@ func (c *checkService) createHeaderFromJWTToken(jwtToken string) (http.Header, e
 
 	headers.Add("Request-User-Id", claims.Subject)
 	headers.Add("Request-User-Role", claims.Role)
-	for _, v := range claims.Authorities {
-		headers.Add("Request-User-Authorities", v)
-	}
+	headers.Add("Request-User-Authorities", strings.Join(claims.Authorities, " "))
+	// for _, v := range claims.Authorities {
+	// 	headers.Add("Request-User-Authorities", v)
+	// }
 	headers.Add("Request-Id", c.getRequestId())
 
 	return headers, nil

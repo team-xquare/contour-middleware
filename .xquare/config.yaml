@@ -1,0 +1,4 @@
+config:
+  name: jwt-middleware
+  service_type: be
+  port: 9443

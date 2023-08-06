@@ -1,0 +1,29 @@
+name: Xquare Deploy for Production
+ 
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.17
+
+    - name: Deploy to xquare
+      uses: team-xquare/xquare-deployment-action@master 
+      with:
+        environment: prod
+        xquare_role_arn: ${{ secrets.XQUARE_ROLE_ARN }}
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        buildargs: |
+          JWT_SECRET=${{ secrets.JWT_SECRET_STAG }}
